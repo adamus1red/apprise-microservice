@@ -56,6 +56,14 @@ jobs:
         uses: docker/metadata-action@3a3bb3a81753dc99f090d24ee7e5343838b73a96
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=schedule,enable=true,priority=1000,pattern=nightly
+            type=semver,pattern={{version}},priority=600
+            type=semver,pattern={{major}}.{{minor}},priority=600
+            type=edge,branch=master,enable=true,priority=600
+            type=ref,event=pr,prefix=pr-,enable=true,priority=500
+            type=sha,enable=true,priority=100,format=short
+            
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
