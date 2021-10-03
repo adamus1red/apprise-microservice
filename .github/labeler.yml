@@ -5,7 +5,6 @@ docker:
 
 application:
 - app.py
-- *.py
 - requirements.txt
 
 docs:
