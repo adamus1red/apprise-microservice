@@ -1,2 +1,2 @@
 Flask==2.1.2
-apprise==0.9.9
+apprise==1.0.0
